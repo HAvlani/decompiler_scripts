@@ -13,5 +13,5 @@ if [ -d "$TMP_DIR" ]; then rm -rf $TMP_DIR; fi
 
 mkdir $TMP_DIR
 
-$GHIDRA_DIR/support/analyzeHeadless $TMP_DIR headless_project -import $1 -postscript test.py $2
+$GHIDRA_DIR/support/analyzeHeadless $TMP_DIR headless_project -import $1 -postscript decompile.py $2
 
