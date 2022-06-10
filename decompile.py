@@ -8,6 +8,7 @@
 #TODO: Add script code here
 from ghidra.app.decompiler import DecompInterface
 from ghidra.util.task import ConsoleTaskMonitor
+import os
 
 
 
@@ -24,8 +25,9 @@ while function is not None:
     name = "function " + str(i)
     i+=1
     function = getFunctionAfter(function)
-    with open(name, "w") as f:
+    filepath = os.path.join('/Users/harshilavlani/Headless_decomp/decomp_funcs_Ghidra/'+ name)
+    with open(filepath, "w") as f:
         f.write(output)
-    
+
 
 
