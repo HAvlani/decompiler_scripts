@@ -1,2 +1,2 @@
-# GHIDRA_decompiler_script
-Script to automate the decompilation of a binary file using GHIDRA
+# decompiler_scripts
+Script to automate the decompilation of a binary file using various decompilers
