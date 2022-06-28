@@ -1,4 +1,3 @@
-from socket import timeout
 import angr
 from angr.analyses import (
     CFGFast,
@@ -8,42 +7,45 @@ from claripy import *
 import os
 from joblib import Parallel, delayed
 import timeout_decorator
-
 #import ipdb
 #ipdb.set_trace()
-def decompile(filename):
-    p = angr.Project('/Users/harshilavlani/Headless_decomp/coreutils-builder/bin/' + filename, auto_load_libs=False, load_debug_info=True)
-    cfg = p.analyses[CFGFast].prep()(data_references=True, normalize=True)
-    for f in cfg.functions.values():
-        print(f.name + " " + filename)
-        name = filename + " " + f.name
-        filepath = os.path.join('/Users/harshilavlani/Headless_decomp/decomp_funcs_angr/'+ name)
-        try:    
-            try:
+timeoutduration = 480 #timeout value
+Path_To_Coreutil_Binaries = "/path/to/binary/" #Enter path to folder with coreutil binaries in question
+Path_To_Output_Folder = "/path/to/output/folder/" #specify output folder
+Num_Cores_In_Use = 1 #specify number of cores to be used
+Error_Path = "/path/to/error/folder/" #specify folder where error files will be written
 
-                dec = p.analyses[Decompiler].prep()(f, cfg=cfg.model)
-                with open(filepath, "w") as f:
-                    f.write(dec.codegen.text)
-            except AttributeError: 
-                with open('/Users/harshilavlani/Headless_decomp/angr-errors/AttributeError', "a") as f:
-                    f.write(name + "\n")
-      
-        except ValueError:
-            with open('/Users/harshilavlani/Headless_decomp/angr-errors/ValueError', "a") as f:
-                    f.write(name + "\n")
-        except ClaripyOperationError:
-            with open('/Users/harshilavlani/Headless_decomp/angr-errors/ClaripyOperationError', "a") as f:
-                    f.write(name + "\n")
-        except TypeError:
-            with open('/Users/harshilavlani/Headless_decomp/angr-errors/TypeError', "a") as f:
-                    f.write(name + "\n")
 
-            
-        
-Parallel(n_jobs=4, timeout=5, verbose=10)(delayed(decompile)(filename) for filename in os.listdir('/Users/harshilavlani/Headless_decomp/coreutils-builder/bin/'))
+@timeout_decorator.timeout(timeoutduration)
+def decompile_func(f, filename, p, cfg):
+    print(f.name + " " + filename)
+    name = filename + " " + f.name 
+    filepath = os.path.join(Path_To_Output_Folder+ name)
+    try:      
+        dec = p.analyses[Decompiler].prep()(f, cfg=cfg.model)
+        with open(filepath, "w") as a:
+            a.write(dec.codegen.text)
+    except AttributeError: 
+        with open(Error_Path + 'AttributeError', "a") as a:
+                a.write(name + "\n")
+    except ValueError:
+        with open(Error_Path + 'ValueError', "a") as a:
+                a.write(name + "\n")
+    except ClaripyOperationError:
+        with open(Error_Path + 'ClaripyOperationError', "a") as a:
+                a.write(name + "\n")
+    except TypeError:
+        with open(Error_Path + 'TypeError', "a") as a:
+                a.write(name + "\n")
+    except Exception:
+        with open(Error_Path + 'TimeoutError', "a") as a:
+                a.write(name + "\n" )
+                
+def decompile():
+    for filename in os.listdir(Path_To_Coreutil_Binaries):
+        p = angr.Project(Path_To_Coreutil_Binaries + filename, auto_load_libs=False, load_debug_info=True)
+        cfg = p.analyses[CFGFast].prep()(data_references=True, normalize=True)
+        if __name__ == '__main__':      
+            Parallel(n_jobs=Num_Cores_In_Use, verbose=25)(delayed(decompile_func)(f,filename,p, cfg) for f in cfg.functions.values())
 
-#with Parallel(n_jobs=4) as parallel:
-    
-    
-    #if __name__ == '__main__':
-        #parallel(delayed(decompile)(filename) for filename in os.listdir('/Users/harshilavlani/Headless_decomp/coreutils-builder/bin/'))
+decompile()
