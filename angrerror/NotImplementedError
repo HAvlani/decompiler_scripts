@@ -1,0 +1,17 @@
+excluded_file_name du
+printf_parse install
+printf_parse stty
+printf_parse dd
+printf_parse stdbuf
+printf_parse od
+printf_parse test
+printf_parse date
+printf_parse rmdir
+printf_parse mkdir
+printf_parse seq
+printf_parse stat
+printf_parse [
+printf_parse df
+printf_parse touch
+printf_parse printf
+printf_parse who

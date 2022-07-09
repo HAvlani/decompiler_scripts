@@ -1,0 +1,101 @@
+
+void isaac_seed(isaac_state *s)
+
+{
+  isaac_word *piVar1;
+  isaac_state *piVar2;
+  isaac_word iVar3;
+  isaac_state *piVar4;
+  ulong uVar5;
+  long lVar6;
+  isaac_word iVar7;
+  ulong uVar8;
+  ulong uVar9;
+  long lVar10;
+  ulong uVar11;
+  ulong uVar12;
+  long lVar13;
+  ulong uVar14;
+  isaac_word iVar15;
+  ulong uVar16;
+  
+  iVar3 = 0x98f5704f6c44c0ab;
+  uVar5 = 0x82f053db8355e0ce;
+  uVar14 = 0xb29b2e824a595524;
+  iVar15 = 0xae985bf2cbfc89ed;
+  uVar12 = 0x8c0ea5053d4712a0;
+  uVar11 = 0xb9f8b322c73ac862;
+  uVar9 = 0x647c4677a2884b7c;
+  iVar7 = 0x48fe4a0fa5a09315;
+  piVar2 = s;
+  do {
+    lVar6 = uVar5 + piVar2->m[4];
+    uVar5 = iVar3 + piVar2->m[7];
+    lVar10 = uVar9 + (piVar2->m[0] - lVar6);
+    uVar8 = iVar7 + piVar2->m[5] ^ uVar5 >> 9;
+    uVar11 = uVar11 + (piVar2->m[1] - uVar8);
+    uVar16 = iVar15 + piVar2->m[6] ^ lVar10 * 0x200;
+    lVar13 = uVar12 + (piVar2->m[2] - uVar16);
+    uVar5 = uVar5 + lVar10 ^ uVar11 >> 0x17;
+    uVar14 = uVar14 + (piVar2->m[3] - uVar5);
+    uVar9 = lVar10 + uVar11 ^ lVar13 * 0x8000;
+    lVar6 = lVar6 - uVar9;
+    piVar2->m[0] = uVar9;
+    uVar11 = uVar11 + lVar13 ^ uVar14 >> 0xe;
+    uVar8 = uVar8 - uVar11;
+    piVar2->m[1] = uVar11;
+    uVar12 = lVar13 + uVar14 ^ lVar6 * 0x100000;
+    lVar10 = uVar16 - uVar12;
+    piVar2->m[2] = uVar12;
+    piVar1 = piVar2->m;
+    uVar14 = uVar14 + lVar6 ^ uVar8 >> 0x11;
+    iVar7 = uVar8 + lVar10;
+    iVar3 = uVar5 - uVar14;
+    piVar2->m[3] = uVar14;
+    uVar5 = lVar10 * 0x4000 ^ lVar6 + uVar8;
+    iVar15 = lVar10 + iVar3;
+    piVar2->m[5] = iVar7;
+    piVar2->m[4] = uVar5;
+    piVar2->m[6] = iVar15;
+    piVar2->m[7] = iVar3;
+    piVar2 = (isaac_state *)(piVar1 + 8);
+    piVar4 = s;
+  } while ((isaac_state *)&s->a != (isaac_state *)(piVar1 + 8));
+  do {
+    lVar6 = uVar5 + piVar4->m[4];
+    uVar5 = iVar3 + piVar4->m[7];
+    lVar10 = uVar9 + (piVar4->m[0] - lVar6);
+    uVar8 = iVar7 + piVar4->m[5] ^ uVar5 >> 9;
+    uVar11 = uVar11 + (piVar4->m[1] - uVar8);
+    uVar16 = iVar15 + piVar4->m[6] ^ lVar10 * 0x200;
+    lVar13 = uVar12 + (piVar4->m[2] - uVar16);
+    uVar5 = uVar5 + lVar10 ^ uVar11 >> 0x17;
+    uVar14 = uVar14 + (piVar4->m[3] - uVar5);
+    uVar9 = lVar10 + uVar11 ^ lVar13 * 0x8000;
+    lVar6 = lVar6 - uVar9;
+    piVar4->m[0] = uVar9;
+    uVar11 = uVar11 + lVar13 ^ uVar14 >> 0xe;
+    uVar8 = uVar8 - uVar11;
+    piVar4->m[1] = uVar11;
+    uVar12 = lVar13 + uVar14 ^ lVar6 * 0x100000;
+    lVar10 = uVar16 - uVar12;
+    piVar4->m[2] = uVar12;
+    piVar1 = piVar4->m;
+    uVar14 = uVar14 + lVar6 ^ uVar8 >> 0x11;
+    iVar7 = uVar8 + lVar10;
+    iVar3 = uVar5 - uVar14;
+    piVar4->m[3] = uVar14;
+    uVar5 = lVar10 * 0x4000 ^ lVar6 + uVar8;
+    iVar15 = lVar10 + iVar3;
+    piVar4->m[5] = iVar7;
+    piVar4->m[4] = uVar5;
+    piVar4->m[6] = iVar15;
+    piVar4->m[7] = iVar3;
+    piVar4 = (isaac_state *)(piVar1 + 8);
+  } while ((isaac_state *)&s->a != (isaac_state *)(piVar1 + 8));
+  s->c = 0;
+  s->b = 0;
+  s->a = 0;
+  return;
+}
+
