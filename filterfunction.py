@@ -8,10 +8,8 @@ newGHIDRA = []
 angrfunctions = set()
 GHIDRAfunctions = set()
 for filename in os.listdir(angrdir):
-    newangr.append(filename.split()[-1] + " " + filename.split()[0]) #TODO Fix angr naming convention
-for filename in os.listdir(GHIDRAdir):
+    newangr.append(filename)
     newGHIDRA.append(filename)
-print(newangr)
 intersection = set(newangr).intersection(newGHIDRA)
 
 with open('/Users/harshilavlani/Headless_decomp/commonfunctions', "a") as a:
@@ -34,4 +32,4 @@ with open('/Users/harshilavlani/Headless_decomp/angrnonduplicatefunction', "a") 
 with open('/Users/harshilavlani/Headless_decomp/GHIDRAnonduplicatefunction', "a") as a:
     for i in list(GHIDRAfunctions):
         a.write(i + "\n")
-        
+    
