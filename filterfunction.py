@@ -2,7 +2,7 @@ import os
 #import ipdb
 #ipdb.set_trace()
 angrdir = '/Users/harshilavlani/Headless_decomp/decomp_funcs_angr/'
-GHIDRAdir = '/Users/harshilavlani/Headless_decomp/decomp_funcs_GHIDRA/'
+GHIDRAdir = '/Users/harshilavlani/Headless_decomp/decomp_funcs_GHIDRAtest/'
 newangr = []
 newGHIDRA = []
 angrfunctions = set()
@@ -11,6 +11,7 @@ for filename in os.listdir(angrdir):
     newangr.append(filename.split()[-1] + " " + filename.split()[0]) #TODO Fix angr naming convention
 for filename in os.listdir(GHIDRAdir):
     newGHIDRA.append(filename)
+print(newangr)
 intersection = set(newangr).intersection(newGHIDRA)
 
 with open('/Users/harshilavlani/Headless_decomp/commonfunctions', "a") as a:

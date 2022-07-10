@@ -14,7 +14,7 @@ while function is not None:
     output = results.getDecompiledFunction().getC()
     name = function.getName() + " " + program.getName()
     function = getFunctionAfter(function)
-    filepath = os.path.join('/Users/harshilavlani/Headless_decomp/decomp_funcs_Ghidra/'+ name)
+    filepath = os.path.join('/Users/harshilavlani/Headless_decomp/decomp_funcs_Ghidratest/'+ name)
     with open(filepath, "w") as f:
         f.write(output)
 

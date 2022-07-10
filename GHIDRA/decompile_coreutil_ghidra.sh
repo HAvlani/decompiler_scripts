@@ -1,2 +1,2 @@
 #!/bin/bash
-for FILE in ./coreutils-builder/bin/*; do ./run_decompile.sh $FILE; done
+for FILE in /Users/harshilavlani/Headless_decomp/coreutils-builder/*; do ./run_decompile.sh $FILE; done
