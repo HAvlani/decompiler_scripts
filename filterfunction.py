@@ -2,7 +2,7 @@ import os
 #import ipdb
 #ipdb.set_trace()
 angrdir = '/Users/harshilavlani/Headless_decomp/decomp_funcs_angr/'
-GHIDRAdir = '/Users/harshilavlani/Headless_decomp/decomp_funcs_GHIDRAtest/'
+GHIDRAdir = '/Users/harshilavlani/Headless_decomp/decomp_funcs_GHIDRA/'
 newangr = []
 newGHIDRA = []
 angrfunctions = set()
