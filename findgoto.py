@@ -33,22 +33,22 @@ def countgoto_common():
     print("GHIDRA gotos: " +  totalgotosGHIDRA)
 '''
 def countgoto_all():
-    FuncPathAngr = '/Users/harshilavlani/Headless_decomp/decomp_funcs_angrcopy/' 
-    FuncPathGHIDRA = '/Users/harshilavlani/Headless_decomp/decomp_funcs_GHIDRAtest/' 
-    #totalgotosangr = 0
+    FuncPathAngr = '/Users/harshilavlani/Headless_decomp/decomp_funcs_angr/' 
+    FuncPathGHIDRA = '/Users/harshilavlani/Headless_decomp/decomp_funcs_GHIDRA/' 
+    totalgotosangr = 0
     totalgotosGHIDRA = 0
     angrdict = {}
     GHIDRAdict = {}
     pattern = rb"(goto ([a-zA-Z0-9_-]+);)"
     with open('/Users/harshilavlani/Headless_decomp/gotosangr.json', "a") as angr, open('/Users/harshilavlani/Headless_decomp/gotosGHIDRA.json', "a") as GHIDRA: 
-        #for filename in os.listdir(FuncPathAngr):
-         #   angrfunctionfile = open(FuncPathAngr + filename, 'rb')
-          #  angrcontent = angrfunctionfile.read()
-           # angrfunctionfile.close()
-            #matchesangr = re.findall(pattern, angrcontent)
+        for filename in os.listdir(FuncPathAngr):
+            angrfunctionfile = open(FuncPathAngr + filename, 'rb')
+            angrcontent = angrfunctionfile.read()
+            angrfunctionfile.close()
+            matchesangr = re.findall(pattern, angrcontent)
             #angr.write(filename + " " + str(len(matchesangr)) + "\n")
-            #angrdict[filename] = len(matchesangr)
-            #totalgotosangr += len(matchesangr)
+            angrdict[filename] = len(matchesangr)
+            totalgotosangr += len(matchesangr)
             
         for filename in os.listdir(FuncPathGHIDRA):
             GHIDRAfunctionfile = open(FuncPathGHIDRA + filename, 'rb')
@@ -58,9 +58,9 @@ def countgoto_all():
             #GHIDRA.write(filename + " " + str(len(matchesGHIDRA)) + "\n")
             GHIDRAdict[filename] = len(matchesGHIDRA)
             totalgotosGHIDRA += len(matchesGHIDRA)
-        #json.dump(angrdict, angr)
-        #json.dump(GHIDRAdict, GHIDRA)
-    print("GHIDRA gotos: " + str(totalgotosGHIDRA))
+        json.dump(angrdict, angr)
+        json.dump(GHIDRAdict, GHIDRA)
+    #print("GHIDRA gotos: " + str(totalgotosGHIDRA))
     #print("angr gotos: " + str(totalgotosangr))
     
 
