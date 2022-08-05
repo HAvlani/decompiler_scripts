@@ -1,3 +1,0 @@
-int canon_host()
-{
-}

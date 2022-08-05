@@ -1,3 +1,0 @@
-int hash_delete()
-{
-}

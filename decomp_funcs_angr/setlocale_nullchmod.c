@@ -1,3 +1,0 @@
-int setlocale_null()
-{
-}

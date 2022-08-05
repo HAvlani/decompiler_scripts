@@ -1,3 +1,0 @@
-int userid_compare()
-{
-}

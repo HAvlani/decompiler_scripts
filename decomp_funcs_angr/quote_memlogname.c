@@ -1,3 +1,0 @@
-int quote_mem()
-{
-}

@@ -1,3 +1,0 @@
-int randread_free()
-{
-}

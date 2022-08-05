@@ -1,3 +1,0 @@
-int try_file()
-{
-}

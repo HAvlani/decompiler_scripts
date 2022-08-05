@@ -1,3 +1,0 @@
-int same_name()
-{
-}

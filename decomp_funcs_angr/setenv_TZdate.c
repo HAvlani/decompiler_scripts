@@ -1,3 +1,0 @@
-int setenv_TZ()
-{
-}

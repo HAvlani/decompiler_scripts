@@ -1,3 +1,0 @@
-int new_exclude()
-{
-}

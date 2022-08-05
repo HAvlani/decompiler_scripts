@@ -1,3 +1,0 @@
-int rpl_vprintf()
-{
-}

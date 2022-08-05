@@ -1,3 +1,0 @@
-int ch_strerror()
-{
-}

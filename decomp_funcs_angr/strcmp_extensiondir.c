@@ -1,3 +1,0 @@
-int strcmp_extension()
-{
-}

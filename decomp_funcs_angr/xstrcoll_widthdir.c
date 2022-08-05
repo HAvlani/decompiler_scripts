@@ -1,3 +1,0 @@
-int xstrcoll_width()
-{
-}

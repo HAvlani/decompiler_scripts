@@ -1,3 +1,0 @@
-int frame_dummy()
-{
-}
