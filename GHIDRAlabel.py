@@ -1,7 +1,8 @@
 import os
 import re
 import json
-GHIDRAFUNCTIONPATH = '/Users/harshilavlani/Headless_decomp/decomp_funcs_GHIDRA/'
+GHIDRAFUNCTIONPATH = './decomp_funcs_GHIDRA/'
+OutputPath = './GHIDRAlabel.json'
 totallines = 0
 GHIDRAdict= {}
 arr = []
@@ -17,5 +18,5 @@ for filename in os.listdir(GHIDRAFUNCTIONPATH):
     else:
         GHIDRAdict[filename] = "" 
     
-with open('/Users/harshilavlani/Headless_decomp/GHIDRAlabel.json', "a") as GHIDRA:
+with open(OutputPath, "w") as GHIDRA:
     json.dump(GHIDRAdict, GHIDRA)
