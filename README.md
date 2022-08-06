@@ -62,6 +62,7 @@ To generate the necessary files, the scripts should be ran in a certain order:
 | # of unique failed decompilations<sup>[1] | 0 | 21585 (only 385 failed decompilations if discounting “sub_” prefixed functions)|
 | # of empty unique functions | 5 | 254 (70 if discounting “sub_” prefixed functions) |
 | # of aborted/halted functions| 141 | 46 (37 if discounting “sub_” prefixed functions) |   
+   
   
 <sup>[1] We define failed decompilations as decompilations where an error is thrown and the whole decompilation process is stopped.
 
@@ -69,14 +70,39 @@ To generate the necessary files, the scripts should be ran in a certain order:
 * While both GHIDRA and angr end up outputting a similiar number of outputted functions (1891 and 1988 for GHIDRA and angr respectively), angr produces far more duplicate functions, leading to the conclusion that for every angr unique function, far more duplicates are made than their GHIDRA counterparts. While this is not necessarily a bad thing, it is still interesting to note.
 * angr is a lot less stable of a decompiler, throwing errors on 21,585 unique functions, while GHIDRA produces no such errors. An interesting thing to note here is that all but 385 of these failed decompilations are from function that are prefixed with "sub_". While we have not confirmed this, we suspect that these "sub_" functions maybe be the result of angr incorrectly identifying the debug symbols that coreutils was built with as functions.
 * While angr does create far more empty unique functions than GHIDRA, GHIDRA has a lot more aborted/halted functions than angr. Additionally, the "sub_" prefixed functions continue to be a major proportion of these metrics for angr.
-
+* It is also important to note that there is a huge difference in decompilation time between angr and GHIDRA. On my computer (1.4 GHz 4 core Intel i5 with 8 Gb of RAM) it took 30 minutes to decompile all of coreutils using only 1 core. On the other hand, angr took
 ### Comparing common and exclusive functions for GHIDRA and angr
 * In the graphs below, we split the angr and GHIDRA decompiled output into common and exclusive functions.
+  <p align="center">
 <img width="865" alt="Screen Shot 2022-08-06 at 2 07 56 PM" src="https://user-images.githubusercontent.com/99096999/183266055-2b352037-6b12-4f1b-a682-8528dd16308d.png">   
-  
+  </p>
 * Here, the metric discrepancy between angr common and exclusive functions that I talked about in the last section becomes clear. If you look at the graph for GHIDRA, you see that while the GHIDRA exclusive functions are a little lower in most metrics compared to the GHIDRA common functions, they are still largely similiar. On the other hand, angr's exclusive functions are far lower than its common functions. Due to this disparity in angr exclusive    functions, we only focus on the common functions for both decompilers.
 * It is also interesting to note that nearly all of angr's exclusive functions are "sub_" prefixed functions.
 
+
 ### Experimental Results: Comparing GHIDRA and angr on common functions
+* In total, there were 1359 mutually decompiled (common) unique functions. The table with the metrics and values for these functions is below
+
+| Average Metric Value per Function  | GHIDRA | angr |
+| --- | ----------- | ---|
+| # of gotos | 1.891| 0.521 |
+| # of LLOC | 31.799 | 39.317 |
+| MCC | 9.929 | 12.714 |
+
+| Total functions per metric  | GHIDRA | angr |
+| --- | ----------- | ---|
+| # of empty functions | 0 | 183 |
+| # of abort/halt functions | 2 | 8 |
+
+* While these metrics do show the metric values, it is easier to see how GHIDRA and angr stack up against each other in the below graph
+<img width="474" alt="Screen Shot 2022-08-06 at 3 43 12 PM" src="https://user-images.githubusercontent.com/99096999/183268127-615722d0-5326-4e02-bb31-96ce9d7bbe77.png">
+
+#### Takeaways
+
+* While angr decompiled output has about a 20% higher LLOC and MCC, it has significantly less gotos (263% less), making angr a lot easier to analyze
+* However, since decompiling with angr throws a lot of errors and takes significantly longer than GHIDRA, you need to invest a lot of time to set up an error catching system and wait for decompilation. In cases where the decompilation results are needed quickly, GHIDRA is the way to go.
+
+
+  
 
   
