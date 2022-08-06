@@ -12,14 +12,23 @@ The metrics, tools, and their appropriate scripts as listed below.
 | # of gotos | N/A | findgoto.py |
 | Logical Lines of Code (LLOC)| [easysloc](https://www.monperrus.net/martin/easysloc) | findLLOC.py |
 | # of empty functions | N/A | GHIDRAlabel.py/angrlabel.py |
-| # of aborted/halted functions | N/A | GHIDRAlabel.py/angrlabel.py |       
+| # of aborted/halted functions | N/A | GHIDRAlabel.py/angrlabel.py |
+| # of failed decompilations | N/A | angrerrorchecker.py |
 
 <br>
 
-<sup>[1] From our analysis, we saw no real indication that the number of variables was a good indicator of the complexity or readability of code. We plotted the number of variables vs. the MCC per LLOC and found no real correlation.   
+<sup>[1] From our analysis, we saw no real indication that the number of variables was a good indicator of the complexity or readability of code. We plotted the number of variables vs. the MCC per LLOC and found no real correlation. You can generate this plot with evalvar.py
 
 <sup>[2] In our script we utilize joern non-interactive mode which calls for the installation of [scala](https://www.scala-lang.org/). Additionally, within our scala script we use a JSON parsing library called [uPickle](https://com-lihaoyi.github.io/upickle/).
 
 To generate the necessary files, the script should be ran in a certain order:
-* For angr   
+1. angrtestparallel.py and decomile_coreutil_ghidra.sh
+2. filterfunction.py
+3. filefunctioncorrangr.py and filefunctioncorrGHIDRA.py
+4. angrlabel.py and GHIDRAlabel.py
+5. addmccall.py
+6. count_variables.py
+7. findgoto.py
+8. findLLOC.py
+  
   
