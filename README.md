@@ -75,8 +75,9 @@ To generate the necessary files, the scripts should be ran in a certain order:
 * In the graphs below, we split the angr and GHIDRA decompiled output into common and exclusive functions.
   <p align="center">
 <img width="865" alt="Screen Shot 2022-08-06 at 2 07 56 PM" src="https://user-images.githubusercontent.com/99096999/183266055-2b352037-6b12-4f1b-a682-8528dd16308d.png">   
-  </p>
-* Here, the metric discrepancy between angr common and exclusive functions that I talked about in the last section becomes clear. If you look at the graph for GHIDRA, you see that while the GHIDRA exclusive functions are a little lower in most metrics compared to the GHIDRA common functions, they are still largely similiar. On the other hand, angr's exclusive functions are far lower than its common functions. Due to this disparity in angr exclusive    functions, we only focus on the common functions for both decompilers.
+  </p>   
+  
+* Here, the metric discrepancy between angr common and exclusive functions that I talked about in the last section becomes clear. If you look at the graph for GHIDRA, you see that while the GHIDRA exclusive functions are a little lower in most metrics compared to the GHIDRA common functions, they are still largely similiar. On the other hand, angr's exclusive functions are far lower than its common functions. Due to this disparity in angr exclusive    functions, we only focus on the common functions for both decompilers.   
 * It is also interesting to note that nearly all of angr's exclusive functions are "sub_" prefixed functions.
 
 
