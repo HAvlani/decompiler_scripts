@@ -34,10 +34,10 @@ def tqdm_joblib(tqdm_object):
 #import ipdb
 #ipdb.set_trace()
 timeoutduration = 900 #timeout value
-Path_To_Coreutil_Binaries = '/Users/harshilavlani/Headless_decomp/coreutils-builder/bin/'#"/path/to/binary/" #Enter path to folder with coreutil binaries in question
-Path_To_Output_Folder = '/Users/harshilavlani/Headless_decomp/decomp_funcs_angr/'#"/path/to/output/folder/" #specify output folder
-Num_Cores_In_Use = 4 #specify number of cores to be used
-Error_Path = '/Users/harshilavlani/Headless_decomp/angr-errors/'#"/path/to/error/folder/" #specify folder where error files will be written
+Path_To_Coreutil_Binaries = #"/path/to/binary/" #Enter path to folder with coreutil binaries in question
+Path_To_Output_Folder = #"/path/to/output/folder/" #specify output folder
+Num_Cores_In_Use = #specify number of cores to be used
+Error_Path = #"/path/to/error/folder/" #specify folder where error files will be written
 
 
 @timeout_decorator.timeout(timeoutduration)
